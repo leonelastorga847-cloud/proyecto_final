@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<section class="auth-card">
+  <p class="eyebrow">Public access</p>
+  <h1>Register</h1>
+  <form action="/register" method="POST" class="form">
+    <label>Name
+      <input type="text" name="nombre" required autocomplete="name">
+    </label>
+    <label>Email
+      <input type="email" name="email" required autocomplete="email">
+    </label>
+    <label>Password
+      <input type="password" name="password" required autocomplete="new-password" minlength="6">
+    </label>
+    <button class="button primary" type="submit">Create account</button>
+  </form>
+  <p class="muted">Already registered? <a href="/login">Sign in</a></p>
+</section>
+
+<%- include('../partials/footer') %>

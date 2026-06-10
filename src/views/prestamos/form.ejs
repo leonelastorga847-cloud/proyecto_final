@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Loans</p>
+    <h1><%= title %></h1>
+  </div>
+  <a class="button" href="/prestamos">Back</a>
+</section>
+
+<form action="<%= action %>" method="<%= method %>" class="form panel">
+  <label>Book
+    <select name="libro_id" required>
+      <option value="">Select a book</option>
+      <% libros.forEach((libro) => { %>
+        <option value="<%= libro._id %>" <%= String(prestamo.libro_id || '') === String(libro._id) ? 'selected' : '' %>><%= libro.titulo %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Reader name
+    <input type="text" name="lector_nombre" value="<%= prestamo.lector_nombre || '' %>" required>
+  </label>
+  <label>Reader email
+    <input type="email" name="lector_email" value="<%= prestamo.lector_email || '' %>" required>
+  </label>
+  <label>Loan date
+    <input type="date" name="fecha_prestamo" value="<%= toDateInput(prestamo.fecha_prestamo) %>" required>
+  </label>
+  <label>Return date
+    <input type="date" name="fecha_devolucion" value="<%= toDateInput(prestamo.fecha_devolucion) %>" required>
+  </label>
+  <label>Status
+    <select name="estado" required>
+      <option value="Activo" <%= prestamo.estado === 'Activo' ? 'selected' : '' %>>Activo</option>
+      <option value="Devuelto" <%= prestamo.estado === 'Devuelto' ? 'selected' : '' %>>Devuelto</option>
+    </select>
+  </label>
+  <button class="button primary" type="submit">Save loan</button>
+</form>
+
+<%- include('../partials/footer') %>

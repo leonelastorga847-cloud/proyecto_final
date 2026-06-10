@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Books</p>
+    <h1><%= title %></h1>
+  </div>
+  <a class="button" href="/libros">Back</a>
+</section>
+
+<form action="<%= action %>" method="<%= method %>" class="form panel">
+  <label>Title
+    <input type="text" name="titulo" value="<%= libro.titulo || '' %>" required>
+  </label>
+  <label>Author
+    <input type="text" name="autor" value="<%= libro.autor || '' %>" required>
+  </label>
+  <label>ISBN
+    <input type="text" name="isbn" value="<%= libro.isbn || '' %>" required>
+  </label>
+  <label>Genre
+    <input type="text" name="genero" value="<%= libro.genero || '' %>">
+  </label>
+  <label>Publication year
+    <input type="number" name="anio_publicacion" value="<%= libro.anio_publicacion || '' %>" min="0">
+  </label>
+  <label>Available copies
+    <input type="number" name="ejemplares_disponibles" value="<%= libro.ejemplares_disponibles ?? '' %>" min="0" required>
+  </label>
+  <button class="button primary" type="submit">Save book</button>
+</form>
+
+<%- include('../partials/footer') %>

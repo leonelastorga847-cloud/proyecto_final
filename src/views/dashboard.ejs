@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<section class="hero-card">
+  <p class="eyebrow">Protected area</p>
+  <h1>Dashboard</h1>
+  <p>Catalog and active loan overview.</p>
+</section>
+
+<section class="stats-grid">
+  <article class="stat-card">
+    <span>Total books</span>
+    <strong><%= totalLibros %></strong>
+  </article>
+  <article class="stat-card">
+    <span>Active loans</span>
+    <strong><%= prestamosActivos %></strong>
+  </article>
+</section>
+
+<section class="actions-grid">
+  <a class="action-card" href="/libros">
+    <strong>Books</strong>
+    <span>View catalog, create, edit and delete books.</span>
+  </a>
+  <a class="action-card" href="/prestamos">
+    <strong>Loans</strong>
+    <span>Manage book loans and returned status.</span>
+  </a>
+</section>
+
+<%- include('partials/footer') %>

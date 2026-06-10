@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Book detail</p>
+    <h1><%= libro.titulo %></h1>
+  </div>
+  <a class="button" href="/libros">Back</a>
+</section>
+
+<section class="detail-card">
+  <dl>
+    <dt>Author</dt><dd><%= libro.autor %></dd>
+    <dt>ISBN</dt><dd><%= libro.isbn %></dd>
+    <dt>Genre</dt><dd><%= libro.genero || '-' %></dd>
+    <dt>Publication year</dt><dd><%= libro.anio_publicacion || '-' %></dd>
+    <dt>Available copies</dt><dd><%= libro.ejemplares_disponibles %></dd>
+  </dl>
+</section>
+
+<section class="section-title">
+  <h2>Associated loans</h2>
+  <p>Relationship Book to Loans through <code>libro_id</code>.</p>
+</section>
+
+<div class="table-card">
+  <table>
+    <thead>
+      <tr><th>Reader</th><th>Email</th><th>Loan date</th><th>Return date</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <% prestamos.forEach((prestamo) => { %>
+        <tr>
+          <td><%= prestamo.lector_nombre %></td>
+          <td><%= prestamo.lector_email %></td>
+          <td><%= formatDate(prestamo.fecha_prestamo) %></td>
+          <td><%= formatDate(prestamo.fecha_devolucion) %></td>
+          <td><span class="badge <%= prestamo.estado === 'Activo' ? 'active' : 'returned' %>"><%= prestamo.estado %></span></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>

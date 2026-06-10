@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">CRUD loans</p>
+    <h1>Loans</h1>
+  </div>
+  <a class="button primary" href="/prestamos/nuevo">New loan</a>
+</section>
+
+<div class="table-card">
+  <table>
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Reader</th>
+        <th>Loan date</th>
+        <th>Return date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% prestamos.forEach((prestamo) => { %>
+        <tr>
+          <td><%= prestamo.libro_id ? prestamo.libro_id.titulo : 'Deleted book' %></td>
+          <td><%= prestamo.lector_nombre %></td>
+          <td><%= formatDate(prestamo.fecha_prestamo) %></td>
+          <td><%= formatDate(prestamo.fecha_devolucion) %></td>
+          <td><span class="badge <%= prestamo.estado === 'Activo' ? 'active' : 'returned' %>"><%= prestamo.estado %></span></td>
+          <td class="row-actions">
+            <a class="button small" href="/prestamos/<%= prestamo._id %>/editar">Edit</a>
+            <button class="button small danger" data-delete-url="/prestamos/<%= prestamo._id %>?_method=DELETE">Delete</button>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/modal') %>
+<%- include('../partials/footer') %>

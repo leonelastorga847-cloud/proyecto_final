@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">CRUD books</p>
+    <h1>Books</h1>
+  </div>
+  <a class="button primary" href="/libros/nuevo">New book</a>
+</section>
+
+<div class="table-card">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Available</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% libros.forEach((libro) => { %>
+        <tr>
+          <td><%= libro.titulo %></td>
+          <td><%= libro.autor %></td>
+          <td><%= libro.isbn %></td>
+          <td><%= libro.ejemplares_disponibles %></td>
+          <td class="row-actions">
+            <a class="button small" href="/libros/<%= libro._id %>">View</a>
+            <a class="button small" href="/libros/<%= libro._id %>/editar">Edit</a>
+            <button class="button small danger" data-delete-url="/libros/<%= libro._id %>?_method=DELETE">Delete</button>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/modal') %>
+<%- include('../partials/footer') %>

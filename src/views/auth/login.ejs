@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+
+<section class="auth-card">
+  <p class="eyebrow">Public access</p>
+  <h1>Login</h1>
+  <form action="/login" method="POST" class="form">
+    <label>Email
+      <input type="email" name="email" required autocomplete="email">
+    </label>
+    <label>Password
+      <input type="password" name="password" required autocomplete="current-password">
+    </label>
+    <button class="button primary" type="submit">Sign in</button>
+  </form>
+  <p class="muted">No account yet? <a href="/register">Create one</a></p>
+  <p class="hint">Demo: demo@demo.com / Demo1234</p>
+</section>
+
+<%- include('../partials/footer') %>
