@@ -1,6 +1,6 @@
 # BiblioApp
 
-BiblioApp es una aplicacion web para administrar un catalogo de libros y sus prestamos. Fue desarrollada como proyecto final de Base de Datos Avanzado usando MongoDB Atlas 7.0.x, Node.js, Express, Mongoose y EJS.
+BiblioApp es una aplicacion web para administrar un catalogo de libros y sus prestamos. Fue desarrollada como proyecto final de Base de Datos Avanzado usando MongoDB Atlas 8.0.24, Node.js, Express, Mongoose y EJS.
 
 ## Resumen
 
@@ -9,7 +9,7 @@ El sistema permite registrar usuarios, iniciar sesion, administrar libros y admi
 | Area | Implementacion |
 | --- | --- |
 | Backend | Node.js, Express |
-| Base de datos | MongoDB Atlas 7.0.x |
+| Base de datos | MongoDB Atlas 8.0.24 |
 | ODM | Mongoose |
 | Vistas | EJS |
 | Autenticacion | `express-session` + `bcrypt` |
