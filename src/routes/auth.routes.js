@@ -10,7 +10,8 @@ router.get('/login', redirectIfAuthenticated, (req, res) => {
 });
 
 router.post('/login', redirectIfAuthenticated, async (req, res) => {
-  const { email, password } = req.body;
+  const { password } = req.body;
+  const email = normalizeEmail(req.body.email);
   const usuario = await Usuario.findOne({ email });
 
   if (!usuario || !(await bcrypt.compare(password, usuario.password_hash))) {
@@ -27,9 +28,28 @@ router.get('/register', redirectIfAuthenticated, (req, res) => {
 });
 
 router.post('/register', redirectIfAuthenticated, async (req, res) => {
-  const { nombre, email, password } = req.body;
+  const nombre = req.body.nombre?.trim();
+  const email = normalizeEmail(req.body.email);
+  const password = req.body.password;
 
   try {
+    if (!nombre || !email || !password) {
+      req.session.flash = { type: 'error', message: 'Complete all required fields.' };
+      return res.redirect('/register');
+    }
+
+    if (password.length < 6) {
+      req.session.flash = { type: 'error', message: 'Password must have at least 6 characters.' };
+      return res.redirect('/register');
+    }
+
+    const existingUser = await Usuario.findOne({ email });
+
+    if (existingUser) {
+      req.session.flash = { type: 'error', message: 'That email is already registered.' };
+      return res.redirect('/register');
+    }
+
     const password_hash = await bcrypt.hash(password, 10);
     await Usuario.create({ nombre, email, password_hash });
     req.session.flash = { type: 'success', message: 'Account created. You can now sign in.' };
@@ -45,5 +65,9 @@ router.post('/logout', (req, res) => {
     res.redirect('/login');
   });
 });
+
+function normalizeEmail(email) {
+  return String(email || '').trim().toLowerCase();
+}
 
 module.exports = router;
